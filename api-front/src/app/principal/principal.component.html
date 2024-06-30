@@ -1,0 +1,64 @@
+<form>
+    <h2>Venda de vacinas Covid</h2>
+    <img src="assets/pessoaVacina.png">
+
+    <h6>Nome do cliente</h6>
+    <input type="text" placeholder="Nome do cliente vacinado" class="form-control" name="nome" [(ngModel)]="cliente.nome"   required  >
+    <h6>CPF</h6>
+    <input type="number" placeholder="CPF" class="form-control" name="CPF"[(ngModel)]="cliente.c_p_f"  required>
+    
+    <h6>Laboratório utilizado</h6>
+    <select name="tipoVacina" id="vacinas" [(ngModel)]="cliente.tipoVacina">
+        <option value="Astrazeneca/Oxford" >Astrazeneca/Oxford</option>
+        <option value="Pfizer BioNTech">Pfizer BioNTech</option>
+        <option value="Janssen">Janssen</option>
+        <option value="CoronaVac">CoronaVac</option>
+        <option value="Covaxin ">Covaxin</option>
+      </select>
+
+    <h6>Filial que o cliente foi vacinado:</h6>
+    <select name="filiais" id="cidade" [(ngModel)]="cliente.cidade">
+        <option value="Campo Belo" >Campo Belo</option>
+        <option value="Lavras">Lavras</option>
+        <option value="Belo Horizonte">Belo Horizonte</option>
+        <option value="Divinópolis">Divinópolis</option>
+      </select>
+      
+    
+
+
+    <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-primary" (click)="cadastrar()">
+    <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
+    <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger"(click)="remover()">
+    <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
+
+</form>
+
+<table class="table" *ngIf="tabela">
+    <thead>
+        <tr>
+            <th>*</th>
+            <th>Nome</th>
+            <th>Tipo da vacina</th>
+            <th>Filial</th>
+            <th>CPF</th>
+            <th>Selecionar</th>
+
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let c of clientes; index as i">
+            <td>{{i+1}}</td>
+            <td>{{c.nome}}</td>
+            <td>{{c.tipoVacina}}</td>
+            <td>{{c.cidade}}</td>
+            <td>{{c.c_p_f}}</td>
+            <td><button class="btn btn-success" (click)="selecionarCliente(i)">Selecionar</button></td>
+        </tr>
+    </tbody>
+
+
+</table>
